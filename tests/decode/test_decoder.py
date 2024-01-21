@@ -2,7 +2,7 @@ from wt_profile_tool.decode.decoder import decode_profile_from_raw_bytes
 from wt_profile_tool.schema.profile import BaseInfo, BattleListItem, LevelInfo
 
 
-def test_decode_profile_from_raw_bytes():
+def test_decode_profile_from_raw_bytes_1():
     with open("tests/example_proto/user1", "rb") as f:
         data = f.read()
     data = decode_profile_from_raw_bytes(data)

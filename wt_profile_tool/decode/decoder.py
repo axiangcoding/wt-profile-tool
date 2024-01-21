@@ -1,5 +1,6 @@
 import json
 import blackboxprotobuf
+from loguru import logger
 
 from wt_profile_tool.schema.profile import (
     BaseInfo,
@@ -10,10 +11,13 @@ from wt_profile_tool.schema.profile import (
 )
 
 
-def decode_profile_from_raw_bytes(raw_bytes: bytes) -> WTProfile:
+def protobuf_to_json(raw_bytes: bytes) -> str:
     message, typedef = blackboxprotobuf.protobuf_to_json(raw_bytes)
+    return message
 
-    msg_json = json.loads(message)
+
+def decode_profile_from_raw_bytes(raw_bytes: bytes) -> WTProfile:
+    msg_json = json.loads(protobuf_to_json(raw_bytes))
 
     base_info = parse_base_info(msg_json["1"])
 
@@ -32,10 +36,10 @@ def decode_profile_from_raw_bytes(raw_bytes: bytes) -> WTProfile:
 def parse_base_info(data: dict) -> BaseInfo:
     return BaseInfo(
         user_id="",
-        nick=data["2"],
-        title=data["4"],
-        clan_id=data["5"],
-        clan_tag=data["6"],
+        nick=data.get("2"),
+        title=data.get("4"),
+        clan_id=data.get("5"),
+        clan_tag=data.get("6"),
     )
 
 
@@ -46,24 +50,6 @@ def parse_level_info(data: dict) -> LevelInfo:
         exp_left=data["3"],
         completeness=data["4"],
     )
-
-
-"""
-class BattleListItem(BaseModel):
-    battle_type: BattleType
-    victories: int
-    battles: int
-    victories_battles: float
-    deaths: int
-    flyouts: int
-    air_kills: int
-    ground_kills: int
-    online_exp_total: int
-    wp_total: int
-    id: str
-    naval_kills: int
-
-"""
 
 
 def parse_battle_list(data: list[dict]) -> list[BattleListItem]:
