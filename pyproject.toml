@@ -26,4 +26,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 line-length = 120
-extend-include = ["I", "N"]
+extend-include = ["I", "N", "UP", "B"]
