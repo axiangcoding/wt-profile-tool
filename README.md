@@ -7,7 +7,7 @@
 
 ## Description
 
-This project contains set of tools used to fetch user profile from the WarThunder server, include serval operation like:
+This package contains set of tools used to fetch user profile from the WarThunder server, include serval operation like:
 
 - get userid by nick
 - get user profile by userid

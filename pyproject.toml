@@ -1,8 +1,9 @@
 [tool.poetry]
 name = "wt-profile-tool"
 version = "0.1.0"
-description = ""
+description = "wt-profile-tool contains set of tools used to fetch user profile from the WarThunder server"
 authors = ["axiangcoding <axiangcoding@gmail.com>"]
+license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
