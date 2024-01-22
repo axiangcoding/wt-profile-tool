@@ -1,6 +1,5 @@
 import json
 import blackboxprotobuf
-from loguru import logger
 
 from wt_profile_tool.schema.profile import (
     BaseInfo,

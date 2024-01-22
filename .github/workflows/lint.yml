@@ -1,0 +1,26 @@
+name: "Lint"
+
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Poetry
+        run: |
+          pipx install poetry
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "poetry"
+      - name: Check poetry file and install dependencies
+        run: |
+          make setup
+      - name: Lint check with ruff
+        run: |
+          make lint
