@@ -5,7 +5,7 @@ setup:
 	poetry install
 
 test:
-	poetry run pytest -vv --cov=./wt_profile_tool
+	poetry run pytest --cov=./wt_profile_tool --cov-report=term
 
 test_in_ci:
 	poetry run pytest --cov=./wt_profile_tool --cov-report=xml
