@@ -45,7 +45,7 @@ class WTProfileTool:
                 "v": 9,
             },
         )
-        if response.status_code == 200:
+        if response.status_code != 200: 
             logger.error(f"Error while searching for {nick}")
             logger.error(f"Status code: {response.status_code}")
             logger.error(f"Response: {response.text}")
