@@ -1,5 +1,5 @@
 import json
-import blackboxprotobuf
+import blackboxprotobuf  # type: ignore
 
 from wt_profile_tool.schema.profile import (
     BaseInfo,
