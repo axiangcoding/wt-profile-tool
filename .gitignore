@@ -2,3 +2,8 @@ __pycache__
 temp/
 .coverage
 test.py
+
+temp/
+dist/
+
+.coverage
