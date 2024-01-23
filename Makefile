@@ -5,7 +5,6 @@ setup:
 	poetry install --with test,lint,typing
 
 test:
-
 	poetry run pytest --cov=./wt_profile_tool --cov-report=term
 
 
