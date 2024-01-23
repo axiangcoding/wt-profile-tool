@@ -13,12 +13,24 @@ bbpb = "^1.1.0"
 loguru = "^0.7.2"
 httpx = "^0.26.0"
 
+[tool.poetry.group.test]
+optional = true
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.group.test.dependencies]
 pytest = "^7.4.4"
 pytest-cov = "^4.1.0"
+
+[tool.poetry.group.lint]
+optional = true
+
+[tool.poetry.group.lint.dependencies]
 ruff = "^0.1.14"
 
+[tool.poetry.group.typing]
+optional = true
+
+[tool.poetry.group.typing.dependencies]
+mypy = "^1.8.0"
 
 [build-system]
 requires = ["poetry-core"]

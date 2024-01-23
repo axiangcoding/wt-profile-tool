@@ -35,7 +35,7 @@ def decode_profile_from_raw_bytes(raw_bytes: bytes) -> WTProfile:
 def parse_base_info(data: dict) -> BaseInfo:
     return BaseInfo(
         user_id="",
-        nick=data.get("2"),
+        nick=str(data.get("2")),
         title=data.get("4"),
         clan_id=data.get("5"),
         clan_tag=data.get("6"),
@@ -67,7 +67,7 @@ def parse_battle_list(data: list[dict]) -> list[BattleListItem]:
                 ground_kills=item.get("8"),
                 online_exp_total=item.get("9"),
                 wp_total=item.get("10"),
-                id=item.get("11"),
+                id=str(item.get("11")),
                 naval_kills=item.get("12"),
             )
         )
