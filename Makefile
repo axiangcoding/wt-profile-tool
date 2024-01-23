@@ -7,6 +7,7 @@ setup:
 test:
 	poetry run pytest --cov=./wt_profile_tool --cov-report=term
 
+
 test_in_ci:
 	poetry run pytest --cov=./wt_profile_tool --cov-report=xml
 
