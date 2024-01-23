@@ -1,8 +1,13 @@
 # WT Profile Tool
 
+[![Lint](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/lint.yml/badge.svg)](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/lint.yml)
+[![Test](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/test.yml/badge.svg)](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/test.yml)
+[![Publish to PyPI and TestPyPI](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/release.yml/badge.svg)](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/release.yml)
+[![codecov](https://codecov.io/gh/axiangcoding/wt-profile-tool/graph/badge.svg?token=03RR71KMBF)](https://codecov.io/gh/axiangcoding/wt-profile-tool)
+
 ## Description
 
-This project contains set of tools used to fetch user profile from the WarThunder server, include serval operation like:
+This package contains set of tools used to fetch user profile from the WarThunder server, include serval operation like:
 
 - get userid by nick
 - get user profile by userid
@@ -24,11 +29,11 @@ poetry add wt-profile-tool
 Then, You can simply import the class and use it like this:
 
 ```python
-from wt_profile_tool.main import WTProfileTool
+from wt_profile_tool import WTProfileTool
 
 tool = WTProfileTool()
 profile = tool.get_profile_by_userid("5363987")
-print(data)
+print(profile)
 ```
 
 **Note**: Every time you call `get_profile_by_userid` will send a request to WarThunder server. Make sure your network can access the server and **DO NOT ABUSE IT**.
@@ -61,7 +66,6 @@ a json string should be like:
   ...
 }
 ```
-
 
 ## Contributing
 
