@@ -88,8 +88,8 @@ class WTProfileTool:
         )
         return response.json()
     
-    
-    def login(cls, login: str, password: str) -> dict[str, str]: #todo: allow 2fa
+
+    def login(self, login: str, password: str) -> dict[str, str]: #todo: allow 2fa
         logger.debug("start request")
         response = httpx.get(
             "https://login.gaijin.net/en/sso/login/",
@@ -99,5 +99,6 @@ class WTProfileTool:
                 "format": "json",
                 "v": "2"
             },
+            timeout=self.timeout,
         )
         return response.json()
