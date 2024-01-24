@@ -29,6 +29,14 @@ class WTProfileTool:
 
         self.__request_client = httpx.Client(timeout=request_timeout, headers=request_headers)
 
+    def get_request_client(self) -> httpx.Client:
+        """get request client, for advanced usage
+
+        Returns:
+            httpx.Client: request client
+        """
+        return self.__request_client
+
     def get_profile_by_userid(self, userid: str) -> WTProfile:
         """get profile by userid
 
