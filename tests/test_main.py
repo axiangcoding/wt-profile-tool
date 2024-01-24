@@ -1,4 +1,21 @@
+import httpx
 from wt_profile_tool.main import WTProfileTool
+
+
+def test_init():
+    test_tool = WTProfileTool()
+    assert test_tool.__request_client.timeout == httpx.Timeout(60.0)
+    assert test_tool.__request_client.headers["User-Agent"] != ""
+
+
+def test_init_2():
+    test_tool = WTProfileTool(
+        request_timeout=httpx.Timeout(30.0),
+        request_headers={"User-Agent": "test"},
+        random_ua=False,
+    )
+    assert test_tool.__request_client.timeout == httpx.Timeout(30.0)
+    assert test_tool.__request_client.headers["User-Agent"] == "test"
 
 
 def test_get_profile_by_userid(test_tool: WTProfileTool):

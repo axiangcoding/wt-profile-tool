@@ -1,23 +1,37 @@
-from typing import Optional
 import httpx
 from loguru import logger
 
+from fake_useragent import FakeUserAgent  # type: ignore
 from wt_profile_tool.decode.decoder import decode_profile_from_raw_bytes
 from wt_profile_tool.schema.profile import WTProfile
 
 
 class WTProfileTool:
-    timeout: Optional[httpx.Timeout] = httpx.Timeout(timeout=60)
-    """request timeout"""
+    __request_client: httpx.Client
 
-    def __init__(self, timeout: Optional[httpx.Timeout] = None) -> None:
-        """init WTProfileTool instance
+    def __init__(
+        self,
+        request_timeout: httpx.Timeout = httpx.Timeout(60.0),
+        request_headers: dict[str, str] = {},
+        random_ua: bool = True,
+    ) -> None:
+        """init WTProfileTool instance to send request
 
         Args:
-            timeout (Optional[httpx.Timeout], optional): request timeout config. Defaults to None.
+            request_timeout (Optional[httpx.Timeout], optional): request timeout config. Defaults to httpx.Timeout(60.0).
+            request_headers (Optional[dict[str, str]], optional): request headers config. Defaults to None.
+            random_ua (bool, optional): random user agent, if set to False, will use default user agent. Defaults to True.
         """
-        if timeout:
-            self.timeout = timeout
+
+        if random_ua:
+            logger.debug(
+                "random user agent enabled, override request headers's User-Agent"
+            )
+            request_headers.__setitem__("User-Agent", FakeUserAgent().random)
+
+        self.__request_client = httpx.Client(
+            timeout=request_timeout, headers=request_headers
+        )
 
     def get_profile_by_userid(self, userid: str) -> WTProfile:
         """get profile by userid
@@ -29,7 +43,7 @@ class WTProfileTool:
             WTProfile: profile
         """
         logger.debug("start request")
-        response = httpx.get(
+        response = self.__request_client.get(
             "https://companion-app.warthunder.com/call/",
             params={
                 "classname": "eaw_ProfileBin",
@@ -39,7 +53,6 @@ class WTProfileTool:
                 "lang": "en",
                 "v": 7,
             },
-            timeout=self.timeout,
         )
         return decode_profile_from_raw_bytes(response.content)
 
@@ -75,7 +88,7 @@ class WTProfileTool:
             dict[str, str]: userid and nick mapping
         """
         logger.debug("start request")
-        response = httpx.get(
+        response = self.__request_client.get(
             "https://companion-app.warthunder.com/call/",
             params={
                 "classname": "eaw_Contacts",
@@ -84,21 +97,22 @@ class WTProfileTool:
                 "nick": nick,
                 "v": 9,
             },
-            timeout=self.timeout,
         )
         return response.json()
-    
 
-    def login(self, login: str, password: str) -> dict[str, str]: #todo: allow 2fa
+    def login(self, login: str, password: str) -> dict[str, str]:  # todo: allow 2fa
+        """login use gaijin account. Be aware do not expose your account token to public
+
+        Args:
+            login (str): login name
+            password (str): password
+
+        Returns:
+            dict[str, str]: account token etc
+        """
         logger.debug("start request")
-        response = httpx.get(
+        response = self.__request_client.get(
             "https://login.gaijin.net/en/sso/login/",
-            params={
-                "login": login,
-                "password": password,
-                "format": "json",
-                "v": "2"
-            },
-            timeout=self.timeout,
+            params={"login": login, "password": password, "format": "json", "v": "2"},
         )
         return response.json()
