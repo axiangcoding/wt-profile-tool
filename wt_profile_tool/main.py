@@ -24,14 +24,10 @@ class WTProfileTool:
         """
 
         if random_ua:
-            logger.debug(
-                "random user agent enabled, override request headers's User-Agent"
-            )
+            logger.debug("random user agent enabled, override request headers's User-Agent")
             request_headers.__setitem__("User-Agent", FakeUserAgent().random)
 
-        self.__request_client = httpx.Client(
-            timeout=request_timeout, headers=request_headers
-        )
+        self.__request_client = httpx.Client(timeout=request_timeout, headers=request_headers)
 
     def get_profile_by_userid(self, userid: str) -> WTProfile:
         """get profile by userid
