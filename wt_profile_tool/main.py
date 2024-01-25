@@ -1,3 +1,4 @@
+from typing import Optional
 import httpx
 from loguru import logger
 
@@ -13,6 +14,8 @@ class WTProfileTool:
         self,
         request_timeout: httpx.Timeout = httpx.Timeout(60.0),
         request_headers: dict[str, str] = {},
+        request_proxy: Optional[str] = None,
+        request_mounts: Optional[dict[str, httpx.BaseTransport]] = None,
         random_ua: bool = True,
     ) -> None:
         """init WTProfileTool instance to send request
@@ -20,6 +23,8 @@ class WTProfileTool:
         Args:
             request_timeout (Optional[httpx.Timeout], optional): request timeout config. Defaults to httpx.Timeout(60.0).
             request_headers (Optional[dict[str, str]], optional): request headers config. Defaults to None.
+            request_proxy (Optional[str], optional): request proxy config. Defaults to None. Can't coexist with request_mounts
+            request_mounts (Optional[dict[str, str]], optional): request proxy mounts config. Defaults to None. Can't coexist with request_proxy
             random_ua (bool, optional): random user agent, if set to False, will use default user agent. Defaults to True.
         """
 
@@ -27,7 +32,12 @@ class WTProfileTool:
             logger.debug("random user agent enabled, override request headers's User-Agent")
             request_headers.__setitem__("User-Agent", FakeUserAgent().random)
 
-        self.__request_client = httpx.Client(timeout=request_timeout, headers=request_headers)
+        self.__request_client = httpx.Client(
+            timeout=request_timeout,
+            headers=request_headers,
+            proxy=request_proxy,
+            mounts=request_mounts,
+        )
 
     def get_request_client(self) -> httpx.Client:
         """get request client, for advanced usage
