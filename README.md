@@ -20,11 +20,11 @@ All data comes from public API.
 
 Many thanks to [@RaidFourms](https://github.com/RaidFourms) for his immense help which inspired this project.
 
-## Not a python developer?
+### Not a python developer?
 
 You can use API server directly by [RaidFourms's wtpt-api](https://github.com/RaidFourms/wtpt-api) project.
 
-## Don't know how to use API server?
+### Don't know how to use API server?
 
 Well, this is a tool project and not intended for non-developers 😵😵😵
 
