@@ -1,5 +1,6 @@
 # WT Profile Tool
 
+[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/axiangcoding/wt-profile-tool)
 [![Lint](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/lint.yml/badge.svg)](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/lint.yml)
 [![Test](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/test.yml/badge.svg)](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/test.yml)
 [![Publish to PyPI and TestPyPI](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/release.yml/badge.svg)](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/release.yml)
@@ -7,38 +8,99 @@
 
 ## Description
 
-This package contains set of tools used to to fetch War Thunder profiles, including: 
+This package contains set of tools used to to fetch War Thunder profiles, including:
 
 - Get user profile by ID
 - Get user ID by nick
+- etc...
+
+All data comes from public API.
+
+**IMPORTANT**: This project is **NOT** affiliated with Gaijin Entertainment in any way, but is built by developers in the War Thunder community who love War Thunder. **If it infringes upon your rights, please contact author**.
+
+Many thanks to [@RaidFourms](https://github.com/RaidFourms) for his immense help which inspired this project.
+
+## Not a python developer?
+
+You can use API server directly by [RaidFourms's wtpt-api](https://github.com/RaidFourms/wtpt-api) project.
+
+## Don't know how to use API server?
+
+Well, this is a tool project and not intended for non-developers 😵😵😵
 
 ## Usage
 
-First, you need to install the package. To use pip directly:
+### Install
+
+You can easily install it with pip:
 
 ```bash
 pip install wt-profile-tool
 ```
 
-You can install it with [Poetry](https://python-poetry.org/):
+Or you can install it with [Poetry](https://python-poetry.org/):
 
 ```bash
 poetry add wt-profile-tool
 ```
 
-Then, you can simply import the class and use it like the following
+### Initialize the tool
+
+You can simply import the class and use it like the following
 
 ```python
 from wt_profile_tool import WTProfileTool
 
-tool = WTProfileTool()
-profile = tool.get_profile_by_userid("5363987")
-print(profile)
+wtpt = WTProfileTool()
+```
+
+Or you want to customize the tool, for example, you want to set all request timeout to 30 seconds, you can do it like the following
+
+```python
+wtpt = WTProfileTool(request_timeout=httpx.Timeout(30.0))
+```
+
+Parhaps you want to use a custom user agent instead of a random one, you can do it like the following
+
+```python
+wtpt = WTProfileTool(request_headers={"User-Agent": "YOUR UA HERE"}, random_ua=False,)
+```
+
+For more information about the parameters, please refer to the [source code](./wt_profile_tool/main.py).
+
+### Get user ID by nick
+
+After you initialize the tool, you can use `search_userid_by_prefix_nick` function to get user ID by prefix nickname.
+
+```python
+# This guy is real exist
+user_id_map = wtpt.search_userid_by_prefix_nick("OnTheRocks")
 ```
 
 **Note**: Every time you call a function it will send a request to a War Thunder server. Make sure your network can access the server and **DO NOT ABUSE IT**.
 
-Finally, you can do something with the data. Data class is a `Pydantic BaseModel`, you can use `profile.dump_model_as_json()` to get the json string if you like.
+### Get user profile by ID
+
+After you have the user ID, you can use `get_profile_by_userid` function to get user profile.
+
+```python
+# This guy is OnTheRocks
+profile = wtpt.get_profile_by_userid("5363987")
+```
+
+Then, you can do something with the `profile`.
+
+```
+base_info = profile.base_info
+
+nick = base_info.nick
+```
+
+`profile` is a `Pydantic V2 BaseModel`, you can use `profile.dump_model_as_json()` to get the json string if you like.
+
+```json
+profile_json = profile.dump_model_as_json()
+```
 
 A JSON string should look like the following:
 
@@ -46,7 +108,7 @@ A JSON string should look like the following:
 {
   "base_info": {
     "user_id": "",
-    "nick": "OnTheRocks", # he was banned (i reported him), so his account is suiteable for example.
+    "nick": "OnTheRocks",
     "icon_id": null,
     "title": "Tank Destroyer",
     "clan_id": null,
@@ -62,14 +124,21 @@ A JSON string should look like the following:
     "completeness": 4.6071824188000174e18
   },
   "lang": "en",
-  "battle_list": [...],
-  ...
+  "battle_list": [],
 }
 ```
 
+> Maybe you want to know why I use player `OnTheRocks` as an example. Because he was a cheater. I reported him and he was banned. This is the price you pay for using cheats to kill me 5 times in one battle. 😡😡😡
+
+### More functions?
+
+You can refer to the [source code](./wt_profile_tool/main.py) to find more functions.
+
 ## Contributing
+
 If you have any issues or suggestions feel free to open one
-Pull requests are welcome.
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 
