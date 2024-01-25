@@ -108,7 +108,7 @@ A JSON string should look like the following:
 {
   "base_info": {
     "user_id": "",
-    "nick": "OnTheRocks", # he was banned (i reported him), so his account is suiteable for example.
+    "nick": "OnTheRocks",
     "icon_id": null,
     "title": "Tank Destroyer",
     "clan_id": null,
@@ -124,8 +124,7 @@ A JSON string should look like the following:
     "completeness": 4.6071824188000174e18
   },
   "lang": "en",
-  "battle_list": [...],
-  ...
+  "battle_list": [],
 }
 ```
 
