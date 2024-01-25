@@ -124,7 +124,7 @@ A JSON string should look like the following:
     "completeness": 4.6071824188000174e18
   },
   "lang": "en",
-  "battle_list": [],
+  "battle_list": []
 }
 ```
 
