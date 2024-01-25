@@ -98,7 +98,7 @@ nick = base_info.nick
 
 `profile` is a `Pydantic V2 BaseModel`, you can use `profile.dump_model_as_json()` to get the json string if you like.
 
-```json
+```python
 profile_json = profile.dump_model_as_json()
 ```
 
