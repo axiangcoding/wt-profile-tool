@@ -7,26 +7,26 @@
 
 ## Description
 
-This package contains set of tools used to fetch user profile from the WarThunder server, include serval operation like:
+This package contains set of tools used to to fetch War Thunder profiles, including: 
 
-- get userid by nick
-- get user profile by userid
+- Get user profile by ID
+- Get user ID by nick
 
 ## Usage
 
-First, you need to install the package. For example use pip directly:
+First, you need to install the package. To use pip directly:
 
 ```bash
 pip install wt-profile-tool
 ```
 
-also you can install it by [Poetry](https://python-poetry.org/):
+You can install it with [Poetry](https://python-poetry.org/):
 
 ```bash
 poetry add wt-profile-tool
 ```
 
-Then, You can simply import the class and use it like this:
+Then, you can simply import the class and use it like the following
 
 ```python
 from wt_profile_tool import WTProfileTool
@@ -36,11 +36,11 @@ profile = tool.get_profile_by_userid("5363987")
 print(profile)
 ```
 
-**Note**: Every time you call `get_profile_by_userid` will send a request to WarThunder server. Make sure your network can access the server and **DO NOT ABUSE IT**.
+**Note**: Every time you call a function it will send a request to a War Thunder server. Make sure your network can access the server and **DO NOT ABUSE IT**.
 
 Finally, you can do something with the data. Data class is a `Pydantic BaseModel`, you can use `profile.dump_model_as_json()` to get the json string if you like.
 
-a json string should be like:
+A JSON string should look like the following:
 
 ```json
 {
@@ -68,7 +68,7 @@ a json string should be like:
 ```
 
 ## Contributing
-
+If you have any issues or suggestions feel free to open one
 Pull requests are welcome.
 
 ## License
