@@ -1,4 +1,5 @@
 import httpx
+from httpx._utils import URLPattern
 from wt_profile_tool.main import WTProfileTool
 
 
@@ -16,6 +17,17 @@ def test_init_2():
     )
     assert test_tool.get_request_client().timeout == httpx.Timeout(30.0)
     assert test_tool.get_request_client().headers["User-Agent"] == "test"
+
+
+def test_init_3():
+    test_tool = WTProfileTool(
+        request_mounts={
+            "http://": httpx.HTTPTransport(proxy="http://localhost:10809"),
+            "https://": httpx.HTTPTransport(proxy="http://localhost:10809"),
+        },
+    )
+    assert test_tool.get_request_client()._mounts.get(URLPattern("http://")) is not None
+    assert test_tool.get_request_client()._mounts.get(URLPattern("https://")) is not None
 
 
 def test_get_profile_by_userid(test_tool: WTProfileTool):
