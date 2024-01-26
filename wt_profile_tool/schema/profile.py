@@ -38,8 +38,18 @@ class EquipmentStatistic(BaseModel):
     ...
 
 
+# ProfileProto.java#L24613
+# TODO
 class CommonStatistic(BaseModel):
-    ...
+    battle_type: int
+    pvp_played: BattleStatisticPVP
+    single_played: BattleStatistic
+    skirmish_played: BattleStatistic
+    leaderboard: LeaderBoard
+    effectiveness: float
+    rating: float
+    kills: int
+    deaths: int
 
 
 class PokerLeaderboard(BaseModel):
