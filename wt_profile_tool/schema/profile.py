@@ -38,6 +38,31 @@ class EquipmentStatistic(BaseModel):
     ...
 
 
+# ProfileProto.java#L22994
+# TODO
+class BattleStatisticPVP(BaseModel):
+    victories: int
+    time_tank_heavy: int
+    time_tank_destroyer: int
+    time_tank: int
+    time_spaa: int
+    time_fighter: int
+    time_bomber: int
+    time_attacker: int
+    target_ground: int
+    target_air: int
+    session: int
+    finished: int
+    time_ship: int
+    time_torpedo_boat: int
+    time_gun_boat: int
+    time_torpedo_gun_boat: int
+    time_submarine_chaser: int
+    time_destroyer: int
+    time_naval_ferry_barge: int
+    target_naval: int
+
+
 # ProfileProto.java#L24613
 # TODO
 class CommonStatistic(BaseModel):
