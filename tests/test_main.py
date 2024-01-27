@@ -32,6 +32,7 @@ def test_init_3():
 
 def test_get_profile_by_userid(test_tool: WTProfileTool):
     data = test_tool.get_profile_by_userid("5363987")
+    assert data.base_info.user_id == "5363987"
     assert data.base_info.nick == "OnTheRocks"
 
 
