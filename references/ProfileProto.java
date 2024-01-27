@@ -1045,8 +1045,7 @@ public final class ProfileProto {
                 case 0:
                     return arcade;
                 case 1:
-                    return realistic;:
-                    
+                    return realistic;
                 case 2:
                     return hardcore;
                 case 3:
