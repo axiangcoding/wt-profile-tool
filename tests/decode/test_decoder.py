@@ -99,11 +99,9 @@ def test_decode_profile_from_raw_bytes_2():
     assert data.lang == "en"
 
     assert data.battle_list[0] == BattleListItem(
+        battle_type=BattleType.REALISTIC,
         battles=1,
-        deaths=1,
-        flyouts=1,
-        ground_kills=1,
-        online_exp_total=89,
-        wp_total=238,
-        id="cn_m8_greyhound",
+        online_exp_total=420,
+        wp_total=900,
+        id="hurricanemkii",
     )
