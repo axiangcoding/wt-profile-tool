@@ -96,10 +96,10 @@ base_info = profile.base_info
 nick = base_info.nick
 ```
 
-`profile` is a `Pydantic V2 BaseModel`, you can use `profile.dump_model_as_json()` to get the json string if you like.
+`profile` is a `Pydantic V2 BaseModel`, you can use `profile.model_dump_json()` to get the json string if you like.
 
 ```python
-profile_json = profile.dump_model_as_json()
+profile_json = profile.model_dump_json()
 ```
 
 A JSON string should look like the following:
@@ -127,6 +127,8 @@ A JSON string should look like the following:
   "battle_list": []
 }
 ```
+
+**NOTE:** Data seems broken or missmatch? Please open an issue and provide example.
 
 > Maybe you want to know why I use player `OnTheRocks` as an example. Because he was a cheater. I reported him and he was banned. This is the price you pay for using cheats to kill me 5 times in one battle. 😡😡😡
 

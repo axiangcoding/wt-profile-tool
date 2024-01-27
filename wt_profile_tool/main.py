@@ -68,7 +68,9 @@ class WTProfileTool:
                 "v": 7,
             },
         )
-        return decode_profile_from_raw_bytes(response.content)
+        profile = decode_profile_from_raw_bytes(response.content)
+        profile.base_info.user_id = userid
+        return profile
 
     def get_profile_by_nick(
         self,
