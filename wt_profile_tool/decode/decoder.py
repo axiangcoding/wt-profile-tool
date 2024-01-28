@@ -1,4 +1,5 @@
 import json
+import numbers
 
 import blackboxprotobuf  # type: ignore
 
@@ -19,13 +20,20 @@ from wt_profile_tool.schema.profile import (
 
 def protobuf_to_json(raw_bytes: bytes) -> str:
     message, typedef = blackboxprotobuf.protobuf_to_json(raw_bytes)
+    print(message)
     return message
 
 
 def decode_profile_from_raw_bytes(raw_bytes: bytes) -> WTProfile:
     msg_json: dict = json.loads(protobuf_to_json(raw_bytes))
 
-    base_info = parse_base_info(msg_json.get("1", {}))
+    first_msg = msg_json.get("1", None)
+
+    # sometimes response can be a error message
+    if isinstance(first_msg, numbers.Number):
+        raise ValueError(f"WarThunder API return {first_msg}, message: {msg_json.get('2')}")
+
+    base_info = parse_base_info(first_msg)
 
     level_info = parse_level_info(msg_json.get("2", {}))
 
