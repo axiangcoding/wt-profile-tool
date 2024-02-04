@@ -2,6 +2,7 @@ import httpx
 
 from wt_profile_tool import WTPTClient
 
+
 def test_init():
     client = WTPTClient()
     assert client is not None

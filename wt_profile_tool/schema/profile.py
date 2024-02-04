@@ -31,7 +31,7 @@ class BattleType(Enum):
 # ProfileProto.java#L6187
 class BaseInfo(BaseModel):
     user_id: str
-    """User ID. for now is empty"""
+    """User ID"""
 
     nick: str
     """User nickname"""
