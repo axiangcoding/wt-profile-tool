@@ -4,7 +4,7 @@ import httpx
 from loguru import logger
 
 from fake_useragent import FakeUserAgent  # type: ignore
-from wt_profile_tool.decode.decoder import decode_profile_from_raw_bytes
+from wt_profile_tool.decode._profile_decoder import decode_profile_from_raw_bytes
 from wt_profile_tool.schema.profile import WTProfile
 
 

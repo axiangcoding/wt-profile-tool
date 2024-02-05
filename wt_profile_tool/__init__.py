@@ -1,4 +1,4 @@
-from .main import WTProfileTool
+from ._main import WTProfileTool
 from .schema.profile import WTProfile
 from ._client import WTPTClient
 

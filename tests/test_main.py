@@ -1,7 +1,7 @@
 import httpx
 from httpx._utils import URLPattern
 import pytest
-from wt_profile_tool.main import WTProfileTool
+from wt_profile_tool._main import WTProfileTool
 
 
 def test_init():

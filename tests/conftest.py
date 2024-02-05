@@ -1,7 +1,7 @@
 import pytest
 
 from wt_profile_tool._client import WTPTClient
-from wt_profile_tool.main import WTProfileTool
+from wt_profile_tool._main import WTProfileTool
 
 
 @pytest.fixture(scope="module")
