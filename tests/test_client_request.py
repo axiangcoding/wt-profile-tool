@@ -25,4 +25,5 @@ def test_get_player_profile_by_nickname(test_client: WTPTClient):
 
 def test_get_player_userid_by_prefix_nick(test_client: WTPTClient):
     data = test_client.get_player_userid_by_prefix_nick("OnTheRocks")
-    assert data["5363987"] == "OnTheRocks"
+    assert data.get_userid_by_nickname("OnTheRocks") == "5363987"
+    assert data.get_nickname_by_userid("5363987") == "OnTheRocks"

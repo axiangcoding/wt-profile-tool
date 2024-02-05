@@ -5,6 +5,7 @@ from loguru import logger
 from wt_profile_tool.decode._profile_decoder import decode_profile_from_raw_bytes
 
 from wt_profile_tool.schema.profile import WTProfile
+from wt_profile_tool.schema.user import UserIdNick
 
 
 class WTPTClient:
@@ -83,14 +84,16 @@ class WTPTClient:
         Returns:
             WTProfile: profile
         """
-        id_nick_map = self.get_player_userid_by_prefix_nick(nick)
-        for userid, _nick in id_nick_map.items():
-            if _nick == nick:
-                logger.debug(f"found userid [{userid}] for nick [{nick}]")
-                return self.get_player_profile_by_userid(userid)
-        raise ValueError(f"nick {nick} not found")
+        data = self.get_player_userid_by_prefix_nick(nick)
 
-    def get_player_userid_by_prefix_nick(self, nick_prefix: str) -> dict[str, str]:
+        uid = data.get_userid_by_nickname(nick)
+
+        if uid is None:
+            raise ValueError(f"nick {nick} not found")
+
+        return self.get_player_profile_by_userid(uid)
+
+    def get_player_userid_by_prefix_nick(self, nick_prefix: str) -> UserIdNick:
         """get player userid by nick prefix
 
         Args:
@@ -110,7 +113,7 @@ class WTPTClient:
                 "v": 9,
             },
         )
-        return response.json()
+        return UserIdNick(id_nick_map=response.json())
 
     def login(self, login: str, password: str) -> dict[str, str]:  # todo: allow 2fa
         """login use gaijin account. Be aware do not expose your account token to public

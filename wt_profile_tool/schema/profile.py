@@ -55,7 +55,7 @@ class BaseInfo(BaseModel):
 class LevelInfo(BaseModel):
     level: int
     """Level of the user"""
-    
+
     exp_has: int
     exp_left: int
     completeness: float
