@@ -116,7 +116,9 @@ class WTPTClient:
         return UserIdNick(id_nick_map=response.json())
 
     def login(self, login: str, password: str) -> dict[str, str]:  # todo: allow 2fa
-        """login use gaijin account. Be aware do not expose your account token to public
+        """login use gaijin account. Be aware this method is not properly tested, and not safe for public use. 
+        
+        Use at your own risk.
 
         Args:
             login (str): login name
