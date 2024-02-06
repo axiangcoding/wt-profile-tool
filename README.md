@@ -95,7 +95,7 @@ data = client.get_player_userid_by_prefix_nick("OnTheRocks")
 
 **Note**: Every time you call a method needs to send http request, it will send a request to a War Thunder server. Make sure your network can access the server and **DO NOT ABUSE IT**.
 
-### Get player's profile by ID
+### Get player's profile by userid
 
 After you have the userid, you can use another method to get player's profile.
 
