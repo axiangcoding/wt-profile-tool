@@ -1,7 +1,4 @@
-from .main import WTProfileTool
-from .schema.profile import WTProfile
+from ._main import WTProfileTool
+from ._client import WTPTClient
 
-__all__ = [
-    "WTProfileTool",
-    "WTProfile",
-]
+__all__ = ["WTProfileTool", "WTPTClient"]

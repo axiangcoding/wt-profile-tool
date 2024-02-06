@@ -46,46 +46,62 @@ poetry add wt-profile-tool
 
 ### Initialize the tool
 
-You can simply import the class and use it like the following
+you can simply import the class and use it like the following
+
+```python
+from wt_profile_tool import WTPTClient
+
+client = WTPTClient()
+```
+
+Or you can customize the client, for example, you want to set all request timeout to 30 seconds
+
+```python
+client = WTPTClient(
+        http_client=httpx.Client(timeout=httpx.Timeout(30.0)),
+)
+```
+
+You can customize the http_client to enable proxy, headers, etc.
+
+Random user agent when sending request?
+
+```python
+client = WTPTClient(random_ua=True)
+```
+
+For more information about the parameters, please refer to the client description.
+
+#### For old version
+
+`WTProfileTool` is still available, but it is not recommended to use it. it has been makred deprecated and will be removed in the future. You can simply import the class and use it like the following
 
 ```python
 from wt_profile_tool import WTProfileTool
 
 wtpt = WTProfileTool()
+
+...
 ```
 
-Or you want to customize the tool, for example, you want to set all request timeout to 30 seconds, you can do it like the following
+### Get player's userid by nickname prefix
 
-```python
-wtpt = WTProfileTool(request_timeout=httpx.Timeout(30.0))
-```
-
-Parhaps you want to use a custom user agent instead of a random one, you can do it like the following
-
-```python
-wtpt = WTProfileTool(request_headers={"User-Agent": "YOUR UA HERE"}, random_ua=False,)
-```
-
-For more information about the parameters, please refer to the [source code](./wt_profile_tool/main.py).
-
-### Get user ID by nick
-
-After you initialize the tool, you can use `search_userid_by_prefix_nick` function to get user ID by prefix nickname.
+After you initialize the tool, you can use client's method to get player's userid by nickname prefix.
 
 ```python
 # This guy is real exist
-user_id_map = wtpt.search_userid_by_prefix_nick("OnTheRocks")
+data = client.get_player_userid_by_prefix_nick("OnTheRocks")
 ```
 
-**Note**: Every time you call a function it will send a request to a War Thunder server. Make sure your network can access the server and **DO NOT ABUSE IT**.
+**Note**: Every time you call a method needs to send http request, it will send a request to a War Thunder server. Make sure your network can access the server and **DO NOT ABUSE IT**.
 
-### Get user profile by ID
+### Get player's profile by userid
 
-After you have the user ID, you can use `get_profile_by_userid` function to get user profile.
+After you have the userid, you can use another method to get player's profile.
 
 ```python
 # This guy is OnTheRocks
-profile = wtpt.get_profile_by_userid("5363987")
+profile = client.get_player_profile_by_userid("5363987")
 ```
 
 Then, you can do something with the `profile`.
@@ -128,19 +144,21 @@ A JSON string should look like the following:
 }
 ```
 
-**NOTE:** Data seems broken or missmatch? Please open an issue and provide example.
+**NOTE:** Data seems broken or missmatch? Please open an issue and provide a right example.
 
 > Maybe you want to know why I use player `OnTheRocks` as an example. Because he was a cheater. I reported him and he was banned. This is the price you pay for using cheats to kill me 5 times in one battle. 😡😡😡
 
-### More functions?
+### More features?
 
-You can refer to the [source code](./wt_profile_tool/main.py) to find more functions.
+You can refer to the `WTPTClient`'s descritpion to find more available methods.
 
 ## Contributing
 
-If you have any issues or suggestions feel free to open one
+If you have any issues or suggestions feel free to open one.
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome.
+
+For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 
