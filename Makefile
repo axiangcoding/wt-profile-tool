@@ -1,4 +1,4 @@
-.PHONY: setup test test_in_ci lint format
+.PHONY: setup test test_in_ci scheduled_test_in_ci lint format
 
 
 setup:
@@ -7,9 +7,11 @@ setup:
 test:
 	poetry run pytest --cov=./wt_profile_tool --cov-report=term
 
-
 test_in_ci:
 	poetry run pytest --cov=./wt_profile_tool --cov-report=xml
+
+scheduled_test_in_ci:
+	poetry run pytest --cov=./wt_profile_tool --cov-report=xml -m "scheduled"
 
 lint:
 	poetry run ruff check ./wt_profile_tool ./tests

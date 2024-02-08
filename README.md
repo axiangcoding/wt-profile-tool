@@ -1,8 +1,9 @@
 # WT Profile Tool
 
 [![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/axiangcoding/wt-profile-tool)
-[![Lint](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/lint.yml/badge.svg)](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/lint.yml)
 [![Test](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/test.yml/badge.svg)](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/test.yml)
+[![Scheduled Test](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/scheduled_test.yml/badge.svg)](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/scheduled_test.yml)
+[![Lint](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/lint.yml/badge.svg)](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/lint.yml)
 [![Publish to PyPI and TestPyPI](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/release.yml/badge.svg)](https://github.com/axiangcoding/wt-profile-tool/actions/workflows/release.yml)
 [![codecov](https://codecov.io/gh/axiangcoding/wt-profile-tool/graph/badge.svg?token=03RR71KMBF)](https://codecov.io/gh/axiangcoding/wt-profile-tool)
 
