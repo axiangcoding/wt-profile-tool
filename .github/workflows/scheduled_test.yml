@@ -1,10 +1,10 @@
-name: "Test"
+name: "Scheduled Test"
 
 on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+  schedule:
+      - cron: "0 */6 * * *"
+  workflow_dispatch:
+
 
 jobs:
   test:
@@ -28,7 +28,7 @@ jobs:
           make setup
       - name: Test with pytest
         run: |
-          make test_in_ci
+          make scheduled_test_in_ci
       - name: Upload coverage reports to Codecov with GitHub Action
         uses: codecov/codecov-action@v4
         env:
