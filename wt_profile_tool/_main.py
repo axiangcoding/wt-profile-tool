@@ -8,7 +8,7 @@ from wt_profile_tool.decode._profile_decoder import decode_profile_from_raw_byte
 from wt_profile_tool.schema.profile import WTProfile
 
 
-@deprecated("WTPTClient is deprecated, use WTPTClient instead")
+@deprecated("WTProfileTool is deprecated, use WTPTClient instead")
 class WTProfileTool:
     __request_client: httpx.Client
 
