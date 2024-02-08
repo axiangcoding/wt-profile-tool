@@ -40,3 +40,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.ruff]
 line-length = 120
 extend-include = ["I", "N", "UP", "B"]
+
+[tool.pytest.ini_options]
+markers = ["scheduled: mark tests only needs to run on a schedule"]
