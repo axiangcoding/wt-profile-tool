@@ -50,6 +50,7 @@ class WTPTClient:
         Returns:
             WTProfile: profile
         """
+        logger.warning("This method will not work properly due to issue https://github.com/axiangcoding/wt-profile-tool/issues/54")
         logger.debug("get profile by userid [{}]", userid)
         response = self.__http_client.get(
             "https://companion-app.warthunder.com/call/",

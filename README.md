@@ -9,7 +9,7 @@
 
 ## Description
 
-This package contains set of tools used to to fetch War Thunder profiles, including:
+This package contains set of tools used to to fetch War Thunder data, including:
 
 - Get user profile by ID
 - Get user ID by nick
@@ -98,6 +98,9 @@ data = client.get_player_userid_by_prefix_nick("OnTheRocks")
 
 ### Get player's profile by userid
 
+> [!warning]
+> This method will not work properly due to https://github.com/axiangcoding/wt-profile-tool/issues/54
+
 After you have the userid, you can use another method to get player's profile.
 
 ```python
@@ -147,6 +150,7 @@ A JSON string should look like the following:
 
 **NOTE:** Data seems broken or missmatch? Please open an issue and provide a right example.
 
+> [!note]
 > Maybe you want to know why I use player `OnTheRocks` as an example. Because he was a cheater. I reported him and he was banned. This is the price you pay for using cheats to kill me 5 times in one battle. 😡😡😡
 
 ### More features?
