@@ -98,6 +98,8 @@ data = client.get_player_userid_by_prefix_nick("OnTheRocks")
 
 ### Get player's profile by userid
 
+> **WARNING:** This method will not work properly due to issue #54
+
 After you have the userid, you can use another method to get player's profile.
 
 ```python
