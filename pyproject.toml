@@ -25,7 +25,7 @@ pytest-cov = "^4.1.0"
 optional = true
 
 [tool.poetry.group.lint.dependencies]
-ruff = "^0.2.0"
+ruff = ">=0.2,<0.4"
 
 [tool.poetry.group.typing]
 optional = true
